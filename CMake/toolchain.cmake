@@ -87,6 +87,11 @@ function(yotta_apply_target_rules target_type target_name)
             COMMENT "converting to .bin"
             VERBATIM
         )
+        add_custom_command(TARGET ${target_name}
+            POST_BUILD
+            COMMAND "${ARM_NONE_EABI_OBJCOPY}" -O ihex ${target_name} ${target_name}.hex
+            COMMENT "converting to .hex"
+            VERBATIM
+        )
     endif()
 endfunction()
-
